@@ -8,8 +8,9 @@ Objectives
 5. Ensure the API is well-documented and secure.
 
 Key Points to Focus On:
+
 • Flask Basics: Understand routing, request methods (GET, POST, PUT, DELETE), and creating RESTful APIs
-.
+
 • Database Integration: Use SQLite or PostgreSQL with Flask-SQLAlchemy.
 
 • Security: Implement input validation, secure passwords with hashing, and ensure secure database queries to prevent SQL injection.
