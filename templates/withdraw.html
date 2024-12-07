@@ -3,7 +3,7 @@
 {% block content %}
     <section class="withdraw">
         <h2>Withdraw Money</h2>
-        <form action="{{ url_for('withdraw') }}" method="POST">
+        <form action='/withdraw' method="POST">
             <div class="form-group">
                 <label for="amount">Amount to Withdraw</label>
                 <input type="number" id="amount" name="amount" required>

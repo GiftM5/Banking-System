@@ -1,6 +1,11 @@
 from flask import Flask,render_template,request
+from database import *
 
 app = Flask(__name__)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///banking_system.db'
+
+db.init_app(app)
 
 @app.route("/")
 def homepage():
@@ -12,10 +17,21 @@ def login():
 
 @app.route("/register",methods = ["GET","POST"])
 def register():
-    if request.method == ["POST"]:
+    if request.method == "POST":
         username = request.form["username"]
-        
-    return render_template("register.html")
+        user = User.query.filter_by(username=username).first()
+        if user:
+            print("username Already Exist")
+            return render_template("register.html")
+        else:
+           password = request.form["password"]
+           new_user = User(username=username, password=password)
+           print("Account Created")
+           db.session.add(new_user)
+           db.session.commit()
+           return render_template("homepage.html")
+    else:
+        return render_template("register.html")
 
 @app.route("/deposit")
 def deposit():
@@ -28,6 +44,8 @@ def update():
 @app.route("/withdraw")
 def withdraw():
     return render_template("withdraw.html")
+
+
 
 if __name__ =="__main__":
     app.run(debug=True)
