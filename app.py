@@ -26,7 +26,5 @@ def update():
 def withdraw():
     return render_template("withdraw.html")
 
-
-
 if __name__ =="__main__":
     app.run(debug=True)
