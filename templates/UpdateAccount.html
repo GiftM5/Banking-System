@@ -1,23 +1,14 @@
+<!-- update_account.html -->
 {% extends 'base.html' %}
 
-{% block title %}Update Account{% endblock %}
-
 {% block content %}
-    <section class="form-section">
-        <div class="container">
-            <h2>Update Your Account</h2>
-            <form action="/updateaccount" method="POST">
-                <label for="email">New Email</label>
-                <input type="email" id="email" name="email">
-
-                <label for="username">New Username</label>
-                <input type="text" id="username" name="username">
-
-                <label for="password">New Password</label>
-                <input type="password" id="password" name="password">
-
-                <button type="submit">Update</button>
-            </form>
-        </div>
-    </section>
+    <div class="container">
+        <h2>Update Account</h2>
+        <form method="POST">
+            <label for="new_password">New Password:</label>
+            <input type="password" name="new_password" required>
+            <button type="submit">Update</button>
+        </form>
+    </div>
 {% endblock %}
+

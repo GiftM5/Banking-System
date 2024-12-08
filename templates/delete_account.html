@@ -1,3 +1,4 @@
+<!-- homepage.html -->
 {% extends 'base.html' %}
 
 {% block content %}
@@ -5,10 +6,14 @@
         <h1>Welcome to the Banking System</h1>
         {% if 'user' in session %}
             <p>Welcome back, {{ session['user'] }}!</p>
-            <p>Your current balance: R{{ session.get('balance', 0) }}</p>
+            <p>Your current balance: ${{ session.get('balance', 0) }}</p>
+
+            <!-- Add a delete account option -->
+            <form action="{{ url_for('delete_account') }}" method="POST">
+                <button type="submit" class="btn-danger">Delete Account</button>
+            </form>
         {% else %}
             <p>Please log in to see your balance and make transactions.</p>
         {% endif %}
     </div>
 {% endblock %}
-

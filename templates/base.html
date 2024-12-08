@@ -1,38 +1,39 @@
+<!-- base.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GM Bank - {% block title %}Default Title{% endblock %}</title>
+    <title>Banking System</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1>GM Bank</h1>
-            <nav>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/register">Register</a></li>
-                    <li><a href="/deposit">Deposit</a></li>
-                    <li><a href="/withdrawal">Withdraw</a></li>
-                    <li><a href="/updateaccount">Update Account</a></li>
-                </ul>
-            </nav>
-        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('homepage') }}">Home</a></li>
+                {% if 'user' in session %}
+                    <li><a href="{{ url_for('deposit') }}">Deposit</a></li>
+                    <li><a href="{{ url_for('withdraw') }}">Withdraw</a></li>
+                    <li><a href="{{ url_for('update') }}">Update Account</a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
+                {% endif %}
+            </ul>
+        </nav>
     </header>
 
     <main>
         {% block content %}
-        <!-- Content will be inserted here -->
+        <!-- Content will be inserted here from other templates -->
         {% endblock %}
     </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2024 My Bank. All rights reserved.</p>
-        </div>
+        <p>&copy; 2024 Banking System | All rights reserved</p>
     </footer>
 </body>
 </html>
+
