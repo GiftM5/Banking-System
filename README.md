@@ -1,106 +1,75 @@
-# Banking-System
+# Banking System (Web-based)
 
-Objectives
-1. Create a robust and secure backend API to handle banking operations like creating accounts, deposits, withdrawals, and balance checks.
-2. Learn and implement Flask concepts such as routing, request handling, and error handling.
-3. Incorporate basic database operations using SQLAlchemy or another database library.
-4. Test the API endpoints with tools like Postman.
-5. Ensure the API is well-documented and secure.
+A simple banking system built with Flask and SQLite. This system allows users to register, log in, view their balance, deposit, withdraw, update their account, and delete their account. The project uses Flask as the backend web framework and SQLite for database storage.
 
-Key Points to Focus On:
+## Features
 
-• Flask Basics: Understand routing, request methods (GET, POST, PUT, DELETE), and creating RESTful APIs
+- **User Registration**: Create a new user account.
+- **User Login**: Log in with an existing account.
+- **Balance View**: View the balance of the account after login.
+- **Deposit Funds**: Deposit money into your account.
+- **Withdraw Funds**: Withdraw money from your account.
+- **Update Account**: Modify your account details.
+- **Delete Account**: Delete your account from the system.
 
-• Database Integration: Use SQLite or PostgreSQL with Flask-SQLAlchemy.
+## Requirements
 
-• Security: Implement input validation, secure passwords with hashing, and ensure secure database queries to prevent SQL injection.
+- Python 3.x
+- Flask
+- Flask-SQLAlchemy
 
-• API Testing: Learn to test your endpoints using tools like Postman or Swagger.
+## Setup and Installation
 
-• Frontend Interaction: Design your API with the intent of connecting it to the HTML and CSS frontend.
+### 1. Clone the Repository
 
+Clone this repository to your local machine using Git:
 
-Step-by-Step Plan
+```bash
+git clone https://github.com/yourusername/banking-system.git
+cd banking-system
 
-Step 1: Set Up Your Environment
+Application Structure
+app.py: The main file containing Flask routes, app initialization, and logic.
+templates/: This folder contains the HTML templates for the various pages (homepage, login, register, etc.).
+static/: This folder holds static files such as CSS and images.
+models.py (if separated): Contains the database models (e.g., User model).
 
-• Install Python (if not already installed).
+Usage
+Once the server is running, you can access the following features:
 
-• Set up a virtual environment.
+1. Home Page
+Access the home page at http://127.0.0.1:5000/. Here, users can navigate to the login and registration pages.
 
-• Install Flask: pip install flask.
+2. Registration
+To create a new account, navigate to the Register page and provide a username and password. If the username already exists, an error will be displayed.
 
-• Install Flask-SQLAlchemy for database interaction: pip install flask-sqlalchemy.
+3. Login
+Once registered, users can log in using their credentials. After successful login, they will be redirected to the homepage and can access their balance.
 
-Step 2: Learn Flask Basics
+4. Deposit
+On the homepage, users can deposit money into their account by entering an amount. The balance will be updated after the deposit.
 
-• Understand how to set up a Flask app.
+5. Withdraw
+Users can withdraw money from their account. The withdrawal amount will be deducted from their balance.
 
-• Learn routing (@app.route), and how to create, read, update, and delete data via API endpoints.
+6. Update Account
+Users can update their account information, such as the username or password.
 
-• Practice returning JSON responses.
+7. Delete Account
+Users can delete their account, and all related data will be removed from the system.
 
-Step 3: Design Your API
+Files and Folders
+app.py: Main application file that contains routes and app logic.
+templates/: Folder containing HTML files for rendering.
+homepage.html: The homepage that shows options after login.
+login.html: Login form for existing users.
+register.html: Registration form for new users.
+deposit.html: Page to deposit funds.
+withdraw.html: Page to withdraw funds.
+update_account.html: Page to update user account details.
+static/: Folder containing CSS files for styling.
+styles.css: The CSS file that styles the web pages.
 
-• Define the API functionality:
-
-• Endpoints:
-
-• /create_account: To create new accounts.
-
-• /deposit: To deposit money.
-
-• /withdraw: To withdraw money.
-
-• /balance: To fetch account balances.
-
-• Decide the data structure for user accounts.
-
-• Sketch out the API using a tool like Swagger or write down the API specifications.
-
-Step 4: Build Database Models
-
-• Use Flask-SQLAlchemy to define models:
-
-• Users: Name, email, password.
-
-• Accounts: Account number, balance.
-
-• Transactions: Amount, type (deposit/withdrawal), timestamp.
-
-• Learn how to perform CRUD operations.
-
-Step 5: Implement Core API Logic
-
-• Write functions to handle:
-
-• Creating accounts.
-
-• Validating and processing deposits and withdrawals.
-
-• Fetching balances.
-
-• Use error handling to catch invalid operations (e.g., insufficient funds).
-
-Step 6: Test Your API
-
-• Install Postman and test each endpoint.
-
-• Validate inputs and outputs for various scenarios.
-
-Step 7: Add Security
-
-• Hash passwords using libraries like bcrypt.
-
-• Validate inputs to prevent attacks like SQL injection.
-
-• Learn about authentication (basic token-based authentication for now).
-
-Step 8: Documentation
-• Add clear documentation for your API endpoints, either manually or using tools like Swagger.
-
-Step 9: Connect to Frontend
-• Use your API with HTML and CSS by making AJAX calls (optional for now; focus on backend first).
 
 
 Official Flask documentation: https://flask.palletsprojects.com/
