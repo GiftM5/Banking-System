@@ -101,3 +101,8 @@ Step 8: Documentation
 
 Step 9: Connect to Frontend
 • Use your API with HTML and CSS by making AJAX calls (optional for now; focus on backend first).
+
+
+Official Flask documentation: https://flask.palletsprojects.com/
+
+Official SQLAlchemy documentation: https://docs.sqlalchemy.org/
