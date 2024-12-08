@@ -1,18 +1,23 @@
 {% extends 'base.html' %}
 
+{% block title %}Update Account{% endblock %}
+
 {% block content %}
-    <section class="update-account">
-        <h2>Update Your Account</h2>
-        <form action= '/update' method="POST">
-            <div class="form-group">
+    <section class="form-section">
+        <div class="container">
+            <h2>Update Your Account</h2>
+            <form action="/updateaccount" method="POST">
                 <label for="email">New Email</label>
                 <input type="email" id="email" name="email">
-            </div>
-            <div class="form-group">
+
+                <label for="username">New Username</label>
+                <input type="text" id="username" name="username">
+
                 <label for="password">New Password</label>
                 <input type="password" id="password" name="password">
-            </div>
-            <button type="submit">Update</button>
-        </form>
+
+                <button type="submit">Update</button>
+            </form>
+        </div>
     </section>
 {% endblock %}
