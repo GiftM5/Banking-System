@@ -1,19 +1,42 @@
-<!-- homepage.html -->
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Account</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Banking System</h1>
+            </div>
+            <div class="nav-links">
+                <a href="{{ url_for('homepage') }}">Home</a>
+                <a href="{{ url_for('deposit') }}">Deposit</a>
+                <a href="{{ url_for('withdraw') }}">Withdraw</a>
+                <a href="{{ url_for('update') }}">Update Account</a>
+                <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+            </div>
+        </nav>
+    </header>
 
-{% block content %}
     <div class="container">
-        <h1>Welcome to the Banking System</h1>
-        {% if 'user' in session %}
-            <p>Welcome back, {{ session['user'] }}!</p>
-            <p>Your current balance: ${{ session.get('balance', 0) }}</p>
-
-            <!-- Add a delete account option -->
+        <div class="delete-section">
+            <h2>Are you sure you want to delete your account, {{ username }}?</h2>
+            <p>This action is irreversible and will delete all your account data, including your balance.</p>
             <form action="{{ url_for('delete_account') }}" method="POST">
-                <button type="submit" class="btn-danger">Delete Account</button>
+                <button type="submit">Delete My Account</button>
             </form>
-        {% else %}
-            <p>Please log in to see your balance and make transactions.</p>
-        {% endif %}
+            <a href="{{ url_for('homepage') }}" class="cancel-btn">Cancel</a>
+        </div>
     </div>
-{% endblock %}
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Banking System | All Rights Reserved</p>
+        </div>
+    </footer>
+</body>
+</html>

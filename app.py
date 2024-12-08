@@ -61,20 +61,36 @@ def balance():
     user = User.query.get(session['user_id'])
     return render_template("balance.html", username=user.username, balance=user.balance)
 
+
 @app.route("/withdraw", methods=["GET", "POST"])
 def withdraw():
-    if request.method == "POST":
-        amount = float(request.form["amount"])
-        user = User.query.filter_by(username=session['user']).first()
-        if user.balance >= amount:
-            user.balance -= amount
-            db.session.commit()
-            session['balance'] = user.balance
-            return redirect(url_for('homepage'))
-        else:
-            return "Insufficient balance!"
-    return render_template("withdraw.html")
+    if 'user' not in session:
+        return redirect(url_for('login'))
 
+    user = User.query.filter_by(username=session['user']).first() 
+
+    if request.method == "POST":
+        try:
+            amount = float(request.form['amount'])
+        except ValueError:
+            return render_template("withdraw.html", error="Please enter a valid number.")
+
+        if amount <= user.balance:
+            user.balance -= amount
+
+            print(f"Balance before withdrawal: {user.balance + amount}")
+            print(f"Balance after withdrawal: {user.balance}")
+
+            
+            db.session.commit()
+
+            return render_template("homepage.html", balance=user.balance)
+
+        else:
+            return render_template("withdraw.html", error="Insufficient balance.")
+    
+    return render_template("withdraw.html")
+   
 
 @app.route("/update", methods=["GET", "POST"])
 def update():
@@ -84,17 +100,23 @@ def update():
         user.password = new_password
         db.session.commit()
         return redirect(url_for('homepage'))
-    return render_template("update_account.html")
+    return render_template("UpdateAccount.html")
 
 
-@app.route("/delete_account", methods=["POST"])
+@app.route('/delete_account', methods=["POST"])
 def delete_account():
-    user = User.query.filter_by(username=session['user']).first()
-    db.session.delete(user)
-    db.session.commit()
-    session.pop('user', None)
-    session.pop('balance', None)
-    return redirect(url_for('homepage'))
+    username = session.get('user')
+
+    if username:
+        user = User.query.filter_by(username=username).first()
+        if user:
+            db.session.delete(user) 
+            db.session.commit() 
+            session.pop('user', None)
+            return redirect(url_for('homepage'))
+        else:
+            return "Account not found", 404
+    return redirect(url_for('login')) 
 
 @app.route("/logout")
 def logout():

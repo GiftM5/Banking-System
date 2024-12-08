@@ -1,14 +1,55 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking System - Homepage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <!-- Navbar Section -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Banking System</h1>
+            </div>
+            <div class="nav-links">
+                {% if 'user' in session %}
+                    <a href="{{ url_for('homepage') }}">Home</a>
+                    <a href="{{ url_for('deposit') }}">Deposit</a>
+                    <a href="{{ url_for('withdraw') }}">Withdraw</a>
+                    <a href="{{ url_for('update') }}">Update Account</a>
+                    <a href="{{ url_for('delete_account') }}" class="delete-account-btn">Delete Account</a>
+                    <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}">Login</a>
+                    <a href="{{ url_for('register') }}">Register</a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
     <div class="container">
-        <h1>Welcome to the Banking System</h1>
-        {% if 'user' in session %}
-            <p>Welcome back, {{ session['user'] }}!</p>
-            <p>Your current balance: R{{ session.get('balance', 0) }}</p>
-        {% else %}
-            <p>Please log in to see your balance and make transactions.</p>
-        {% endif %}
+        <div class="greeting-section">
+            {% if 'user' in session %}
+                <h2>Welcome, {{ session['user'] }}!</h2>
+                <p>Your current balance is: <span class="balance">${{ session['balance'] }}</span></p>
+            {% else %}
+                <h2>Please log in or register to manage your account.</h2>
+            {% endif %}
+        </div>
     </div>
-{% endblock %}
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Banking System | All Rights Reserved</p>
+        </div>
+    </footer>
+</body>
+
+</html>
 
